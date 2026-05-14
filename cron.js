@@ -1,10 +1,11 @@
 // cron.js — scheduled tasks (Bug #17 fixed: .catch() on every handler)
 import cron from "node-cron";
 import { createClient } from "@supabase/supabase-js";
+import ws from "ws";
 import { sendWhatsApp } from "./index.js";
 import { redis, recoverStuckJobs } from "./queue.js";
 
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY, { realtime: { transport: ws } });
 
 export function startCronJobs() {
   // ── Morning briefing — 8am in owner's timezone ──────────────────

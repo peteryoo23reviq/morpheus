@@ -1,6 +1,7 @@
 // agent/loop.js — main agent loop
 import Anthropic from "@anthropic-ai/sdk";
 import { createClient } from "@supabase/supabase-js";
+import ws from "ws";
 import { mkdirSync, rmSync } from "fs";
 import path from "path";
 import { executeTool } from "./tools.js";
@@ -9,7 +10,8 @@ import { deployProject } from "../deployer.js";
 import { sendWhatsApp } from "../index.js";
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-const supabase  = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
+import ws from "ws";
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY, { realtime: { transport: ws } });
 
 const MAX_ITER  = 80;
 const BUILD_DIR = process.env.BUILD_DIR || "/tmp/morpheus-builds";

@@ -1,9 +1,10 @@
-import { WebSocket } from "ws";
+
 globalThis.WebSocket = WebSocket;
 // index.js — Morpheus main server
 import express from "express";
 import crypto from "crypto";
 import { createClient } from "@supabase/supabase-js";
+import { WebSocket } from "ws";
 import { enqueueJob, dequeueJob, completeJob, requeueJob, recoverStuckJobs, isDuplicateMessage } from "./queue.js";
 import { runAgent } from "./agent/loop.js";
 import { startCronJobs } from "./cron.js";
