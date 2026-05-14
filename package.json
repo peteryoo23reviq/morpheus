@@ -1,0 +1,22 @@
+{
+  "name": "morpheus",
+  "version": "2.0.0",
+  "description": "Autonomous AI build partner — WhatsApp → live site overnight",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.24.0",
+    "@supabase/supabase-js": "^2.43.0",
+    "@upstash/redis": "^1.31.0",
+    "express": "^4.19.0",
+    "node-cron": "^3.0.3",
+    "octokit": "^4.0.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
