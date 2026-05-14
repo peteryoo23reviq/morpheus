@@ -41,11 +41,13 @@ export async function dequeueJob() {
 }
 
 // ── Mark job complete — remove from processing (Bug #2 fixed: lrem by job.id) ──
-export async function completeJob(jobId) {
-  // Scan processing list and remove the entry whose id matches
-  const all = await redis.lrange(PROCESSING_KEY, 0, -1);
-  for (const raw of all) {
-    const item = typeof raw === "string" ? JSON.parse(raw) : raw;
+export async function dequeueJob() {
+  const raw = await redis.rpop(QUEUE_KEY);
+  if (!raw) return null;
+  const job = typeof raw === "string" ? JSON.parse(raw) : raw;
+  await redis.lpush(PROCESSING_KEY, JSON.stringify(job));
+  return job;
+}
     if (item.id === jobId) {
       await redis.lrem(PROCESSING_KEY, 1, raw);
       return true;
