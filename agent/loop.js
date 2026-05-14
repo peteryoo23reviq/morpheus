@@ -10,7 +10,6 @@ import { deployProject } from "../deployer.js";
 import { sendWhatsApp } from "../index.js";
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-import ws from "ws";
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY, { realtime: { transport: ws } });
 
 const MAX_ITER  = 80;
