@@ -1,3 +1,5 @@
+import ws from "ws";
+if (!globalThis.WebSocket) globalThis.WebSocket = ws.WebSocket;
 // agent/tools.js — tool implementations for the agent loop
 import { execSync } from "child_process";
 import { mkdirSync, writeFileSync, readFileSync, existsSync } from "fs";
@@ -7,7 +9,8 @@ import { commitFileDuringBuild } from "../deployer.js";
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_ANON_KEY
+  process.env.SUPABASE_ANON_KEY,
+  { realtime: { transport: ws } }
 );
 
 // ── Safe env for bash — strips all secrets (Bug #1 fixed: was passing full env) ──

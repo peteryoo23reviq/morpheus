@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "start": "node --import ./setup.js index.js",
     "dev": "node --watch index.js"
   },
   "dependencies": {
