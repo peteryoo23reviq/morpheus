@@ -1,7 +1,6 @@
 // agent/loop.js — main agent loop
 import Anthropic from "@anthropic-ai/sdk";
 import { createClient } from "@supabase/supabase-js";
-import ws from "ws";
 import { mkdirSync, rmSync } from "fs";
 import path from "path";
 import { executeTool } from "./tools.js";
