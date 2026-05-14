@@ -9,7 +9,7 @@ import { deployProject } from "../deployer.js";
 import { sendWhatsApp } from "../index.js";
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY, { realtime: { transport: ws } });
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
 
 const MAX_ITER  = 80;
 const BUILD_DIR = process.env.BUILD_DIR || "/tmp/morpheus-builds";
