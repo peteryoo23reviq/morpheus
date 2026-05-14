@@ -1,3 +1,5 @@
+import { WebSocket } from "ws";
+globalThis.WebSocket = WebSocket;
 // index.js — Morpheus main server
 import express from "express";
 import crypto from "crypto";
